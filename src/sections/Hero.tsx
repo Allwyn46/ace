@@ -4,8 +4,8 @@ import Navbar from '../components/Navbar';
 const Hero = () => {
     return (
         <>
-            <div>
-                <Navbar />
+            <div className='h-screen'>
+                
             </div>
         </>
     );
