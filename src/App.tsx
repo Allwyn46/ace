@@ -15,10 +15,9 @@ function App() {
                 {/* <NavbarDemo /> */}
                 <Nav />
                 <Hero />
-                <section id='projects'>
-
-                <BentoGridDemo />
-                <BentoGridThirdDemo />
+                <section id="projects">
+                    <BentoGridDemo />
+                    <BentoGridThirdDemo />
                 </section>
             </div>
         </>
