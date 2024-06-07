@@ -1,4 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const HackerEffect: React.FC = ({ children }) => {
+    const [text, setText] = useState<string>('');
+
+    useEffect(() => {
+        const originalText = children.props.children;
+        let iterations = 0;
+        const interval = setInterval(() => {
+            let newText = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (i < iterations) {
+                    newText += originalText[i];
+                } else {
+                    newText += getRandomChar();
+                }
+            }
+            setText(newText);
+            iterations += 1 / 4;
+            if (iterations > originalText.length) {
+                clearInterval(interval);
+            }
+        }, 30);
+
+        return () => clearInterval(interval);
+    }, [children]);
+
+    const getRandomChar = () => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return letters[Math.floor(Math.random() * 26)];
+    };
+
+    return (
+        <div className="w-10/12">
+            <h1
+                className="text-white font-ar text-[290px] leading-[16rem]"
+                id="hacker_effect"
+            >
+                {text}
+            </h1>
+        </div>
+    );
+};
 
 const Hero = () => {
     return (
@@ -10,9 +53,22 @@ const Hero = () => {
                             <p className="text-white font-out_semi ms-2 text-2xl">
                                 HELLO I'M ALLWYN, A
                             </p>
-                            <h1 className="text-white font-ar text-[290px] leading-[16rem]">
-                                FRONTEND DEVELOPER
-                            </h1>
+                            <HackerEffect>
+                                <h1
+                                    className="text-white font-black text-[290px]"
+                                    data-value="FRONTEND DEVELOPER"
+                                >
+                                    FRONTEND
+                                </h1>
+                            </HackerEffect>
+                            <HackerEffect>
+                                <h1
+                                    className="text-white font-black text-[290px]"
+                                    data-value="FRONTEND DEVELOPER"
+                                >
+                                    DEVELOPER
+                                </h1>
+                            </HackerEffect>
                         </div>
                         <div>
                             <h1 className="text-white">
